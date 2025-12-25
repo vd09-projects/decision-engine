@@ -1,0 +1,41 @@
+{
+  "use_case": "dating_swipe_v1",
+  "payload": {
+    "bio": "I love hiking, coffee, and building side projects.",
+    "details": {
+      "age": 27,
+      "location": "Bangalore",
+      "job_title": "Software Engineer",
+      "distance_km": 7
+    },
+    "images": [
+      {
+        "image_id": "img1",
+        "traits": {
+          "global_confidence": 78,
+          "traits": {
+            "lifestyle": { "summary": "Outdoor activity", "signals": ["hiking", "daylight outdoors"], "confidence": 80 }
+          },
+          "notes": ["clear face", "good lighting"]
+        }
+      },
+      {
+        "image_id": "img2",
+        "traits": {
+          "global_confidence": 55,
+          "traits": {
+            "social": { "summary": "Group setting", "signals": ["friends", "event"], "confidence": 60 }
+          },
+          "notes": ["slightly blurry"]
+        }
+      }
+    ]
+  },
+  "context": {
+    "preferences": {
+      "max_distance_km": 12,
+      "age_min": 23,
+      "age_max": 30
+    }
+  }
+}
