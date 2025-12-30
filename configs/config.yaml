@@ -1,0 +1,55 @@
+decision_engine:
+  output:
+    format: "tool_json"
+    allow_decisions: ["YES", "NO", "MAYBE"]
+    score_min: 0
+    score_max: 100
+    max_reasons: 6
+    max_concerns: 6
+
+  use_cases:
+    dating_swipe_v1:
+      llm:
+        provider: ollama
+        base_url: "http://localhost:11434"
+        model: "llama3.1:8b"
+        temperature: 0.0
+        top_p: 0.9
+        num_predict: 512
+        timeout_ms: 20000
+
+      policy:
+        thresholds:
+          yes_min_score: 75
+          no_max_score: 45
+
+      prompt:
+        template_path: "./prompts/dating_swipe_v1.tmpl"
+        bindings:
+          bio:
+            source: payload
+            path: bio
+            required: true
+            default: ""
+            max_len: 2000
+
+          details_json:
+            source: payload
+            path: details
+            as_json: true
+            default: "{}"
+            max_len: 4000
+
+          images_json:
+            source: payload
+            path: images
+            as_json: true
+            default: "[]"
+            max_len: 12000
+
+          prefs_json:
+            source: context
+            path: preferences
+            as_json: true
+            default: "{}"
+            max_len: 2000
